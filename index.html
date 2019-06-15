@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tags.css">
+
+    <style>
+        /*
+        Custom styles go here
+         */
+        #myTags {
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+            padding: 3px 0px 3px 3px;
+            margin: 5px 1px 3px 0px;
+            border: 1px solid rgba(81, 203, 238, 1);
+        }
+
+        .container{
+            width: 70%;
+            margin: 0 auto;
+            padding-top: 20vh;
+        }
+
+        body{
+            font-family: 'Lato', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="container">
+            <div class="tags-input" id="myTags">
+                <span class="data">
+                    <span class="tag"><span class="text" _value="Nairobi 047">Nairobi 047</span><span class="close">&times;</span></span>
+                    <span class="tag"><span class="text" _value="24">Mombasa</span><span class="close">&times;</span></span>
+                </span>
+
+                    <span class="autocomplete">
+                    <input type="text">
+                    <div class="autocomplete-items">
+                    </div>
+                </span>
+            </div>
+        </div>
+
+
+        <script src="jquery-2.2.3.min.js"></script>
+        <script type="text/javascript" src="tags.js"></script>
+
+
+        <script>
+            $(function () {
+                console.log($('#myTags').tagsValues())
+            })
+
+            function runSuggestions(element,query) {
+
+                /*
+                using ajax to populate suggestions
+                 */
+                let sug_area=$(element).parents().eq(2).find('.autocomplete .autocomplete-items');
+                $.getJSON("data.json", function( data ) {
+                    _tag_input_suggestions_data = data;
+                    $.each(data,function (key,value) {
+                        let template = $("<div>"+value.name+"</div>").hide()
+                        sug_area.append(template)
+                        template.show()
+
+                    })
+                });
+
+            }
+        </script>
+
+</body>
+</html>
