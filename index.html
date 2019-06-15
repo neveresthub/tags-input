@@ -5,8 +5,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Tags input</title>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+<!--    /*syntax highlighting*/-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeFadeToGrey.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.min.js"></script>
+
+<!--    /*tags input css*/-->
     <link rel="stylesheet" href="tags.css">
 
     <style>
@@ -23,17 +32,23 @@
         .container{
             width: 70%;
             margin: 0 auto;
-            padding-top: 20vh;
+            padding-top: 5vh;
         }
 
         body{
             font-family: 'Lato', sans-serif;
+        }
+        .syntaxhighlighter{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-weight: lighter;
         }
     </style>
 </head>
 <body>
 
         <div class="container">
+            <h1 style="text-align: center">Tags input</h1>
             <div class="tags-input" id="myTags">
                 <span class="data">
                     <span class="tag"><span class="text" _value="Nairobi 047">Nairobi 047</span><span class="close">&times;</span></span>
@@ -46,16 +61,46 @@
                     </div>
                 </span>
             </div>
+
+            <h2>Usage</h2>
+            <p>link the javascript and css dependancies to your page</p>
+
+            <pre class="brush: js">
+                <link rel="stylesheet" href="../path/to/tags.css">
+                <script type="text/javascript" src="../path/to/tags.js"></script>
+
+
+            </pre>
+
+            <p>Add the following html to your page section where tags inputs are required</p>
+            <pre class="brush: js">
+
+            <!--html required to create tags input-->
+             <div class="tags-input">
+                <span class="data"></span>
+                    <span class="autocomplete"><input type="text"><div class="autocomplete-items"></div>
+                </span>
+            </div>
+
+            </pre>
         </div>
 
 
+<!--        /*Jquery and tags input js*/-->
         <script src="jquery-2.2.3.min.js"></script>
         <script type="text/javascript" src="tags.js"></script>
 
 
+
+
+
         <script>
             $(function () {
+                SyntaxHighlighter.all();
+
                 console.log($('#myTags').tagsValues())
+
+
             })
 
             function runSuggestions(element,query) {
@@ -76,6 +121,7 @@
 
             }
         </script>
+
 
 </body>
 </html>
